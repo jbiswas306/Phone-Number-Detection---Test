@@ -1,0 +1,29 @@
+﻿@page
+@model PhoneNumberDetaction.Pages.Index1Model
+@{
+    ViewData["Title"] = "Phone Number Detector";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="inputText">Enter text containing phone numbers:</label>
+        <textarea class="form-control" id="inputText" name="inputText" rows="5">@Model.InputText</textarea>
+        @*Enter the input*@
+    </div>
+    <button type="submit" class="btn btn-primary">Detect Phone Numbers</button>
+    @*Submit the input*@
+</form>
+
+@if (Model.PhoneNumbers.Count > 0)
+{
+    <h2>Detected Phone Numbers</h2>
+    <ul>
+        @foreach (var phoneNumber in Model.PhoneNumbers)
+        {
+            <li>@phoneNumber.Number (Format: @phoneNumber.Format)</li>
+        }
+        @*View the Result along with their formats*@
+    </ul>
+}
